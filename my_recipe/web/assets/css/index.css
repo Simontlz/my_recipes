@@ -1,0 +1,13 @@
+body{
+    background-color: #F5F5F5;
+}
+
+#text{
+    text-align: center;
+    margin-top: 5%;
+}
+
+#formulaire{
+    position: absolute;
+    margin: 350px 380px;
+}

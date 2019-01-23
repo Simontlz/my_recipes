@@ -1,0 +1,18 @@
+{% include "base.html.twig" %}
+
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/index.css') }}">
+{% endblock %}
+
+
+{% block body %}
+    <div class="formulaire">
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }}
+    </div>
+    {% include "Carousel/carousel.html.twig" %}
+    <br>
+    {% include "default/bottom.html.twig" %}
+{% endblock %}
