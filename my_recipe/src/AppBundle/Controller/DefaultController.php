@@ -37,6 +37,7 @@ class DefaultController extends Controller
         if ($formRecipe->isSubmitted() && $formRecipe->isValid())
         {
             $recipe = $formRecipe->getData();
+            $this->splitIngredientsList($recipe->getName());
 
         }
         return $this->render('default/index.html.twig', [
@@ -47,6 +48,8 @@ class DefaultController extends Controller
 
     public function splitIngredientsList(string $ingredientsList)
     {
-        $array = explode(",", $ingredientsList, -1);
+        $array = explode(",", $ingredientsList);
+        dump($array);die;
+        return $array;
     }
 }
