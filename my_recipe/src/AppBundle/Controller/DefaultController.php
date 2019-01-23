@@ -2,8 +2,9 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Entity\findRecipe;
-use AppBundle\Entity\Entity\findWithIngredients;
+use AppBundle\Entity\Recipe;
+use AppBundle\Entity\Ingredients;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -17,20 +18,22 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $recipe = new findRecipe();
-        $recipeWithIngredients = new findWithIngredients();
+        $recipe = new Recipe();
+        $ingredients = new Ingredients();
 
-        $form = $this->createFormBuilder($recipe)
+        $formRecipe = $this->createFormBuilder($recipe)
             ->add('name', TextType::class, ['label' => 'Nom de la recette'])
+            ->add('save', SubmitType::class, ['label' => 'Valider'])
             ->getForm();
 
-        $formWithIngredients = $this->createFormBuilder($recipeWithIngredients)
+        $formIngredients = $this->createFormBuilder($ingredients)
             ->add('list', TextareaType::class, ['label' => 'Noms des ingrédients (Séparé par une virgule)'])
+            ->add('save', SubmitType::class, ['label' => 'Valider'])
             ->getForm();
 
         return $this->render('default/index.html.twig', [
-            'form' => $form->createView(),
-            'formWithIngredients' => $formWithIngredients->createView()
+            'form' => $formRecipe->createView(),
+            'formWithIngredients' => $formIngredients->createView()
         ]);
     }
 }

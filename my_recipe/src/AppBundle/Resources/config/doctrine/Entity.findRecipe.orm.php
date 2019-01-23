@@ -3,7 +3,7 @@
 use Doctrine\ORM\Mapping\ClassMetadataInfo;
 
 $metadata->setInheritanceType(ClassMetadataInfo::INHERITANCE_TYPE_NONE);
-$metadata->customRepositoryClassName = 'AppBundle\Repository\Entity\findRecipeRepository';
+$metadata->customRepositoryClassName = 'AppBundle\Repository\Entity\recipeRepository';
 $metadata->setChangeTrackingPolicy(ClassMetadataInfo::CHANGETRACKING_DEFERRED_IMPLICIT);
 $metadata->mapField(array(
    'fieldName' => 'id',

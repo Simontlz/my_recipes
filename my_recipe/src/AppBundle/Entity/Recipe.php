@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Entity\Entity;
+namespace AppBundle\Entity;
 
 /**
- * findRecipe
+ * recipe
  */
-class findRecipe
+class recipe
 {
     /**
      * @var int
@@ -33,7 +33,7 @@ class findRecipe
      *
      * @param string $name
      *
-     * @return findRecipe
+     * @return recipe
      */
     public function setName($name)
     {

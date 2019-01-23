@@ -1,11 +1,11 @@
 <?php
 
-namespace AppBundle\Entity\Entity;
+namespace AppBundle\Entity;
 
 /**
- * findWithIngredients
+ * ingredients
  */
-class findWithIngredients
+class ingredients
 {
     /**
      * @var int
@@ -33,7 +33,7 @@ class findWithIngredients
      *
      * @param array $list
      *
-     * @return findWithIngredients
+     * @return ingredients
      */
     public function setList($list)
     {
