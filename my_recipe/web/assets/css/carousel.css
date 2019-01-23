@@ -1,5 +1,6 @@
 @media screen and (min-width: 640px) {
     .carousel{
+        margin-top:6%;
         width: 40%;
         height: auto;
     }

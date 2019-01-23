@@ -7,12 +7,20 @@
 
 
 {% block body %}
-    <div class="formulaire">
+    <div class="form">
         {{ form_start(form) }}
-        {{ form_widget(form) }}
+        {{ form_label(form.name) }} <br>
+        {{ form_widget(form.name) }}
+        {{ form_rest(form) }}
         {{ form_end(form) }}
     </div>
+    <div class="formWithIngredients">
+        {{ form_start(formWithIngredients) }}
+        {{ form_label(formWithIngredients.list) }} <br>
+        {{ form_widget(formWithIngredients.list) }}
+        {{ form_rest(formWithIngredients) }}
+        {{ form_end(formWithIngredients) }}
+    </div>
     {% include "Carousel/carousel.html.twig" %}
-    <br>
     {% include "default/bottom.html.twig" %}
 {% endblock %}
