@@ -8,18 +8,18 @@
 
 {% block body %}
     <div class="form">
-        {{ form_start(form) }}
-        {{ form_label(form.name) }} <br>
-        {{ form_widget(form.name) }}
-        {{ form_rest(form) }}
-        {{ form_end(form) }}
+        {{ form_start(recipe) }}
+        {{ form_label(recipe.name) }} <br>
+        {{ form_widget(recipe.name) }}
+        {{ form_rest(recipe) }}
+        {{ form_end(recipe) }}
     </div>
     <div class="formWithIngredients">
-        {{ form_start(formWithIngredients) }}
-        {{ form_label(formWithIngredients.list) }} <br>
-        {{ form_widget(formWithIngredients.list) }}
-        {{ form_rest(formWithIngredients) }}
-        {{ form_end(formWithIngredients) }}
+        {{ form_start(ingredients) }}
+        {{ form_label(ingredients.ingredients) }} <br>
+        {{ form_widget(ingredients.ingredients) }}
+        {{ form_rest(ingredients) }}
+        {{ form_end(ingredients) }}
     </div>
     {% include "Carousel/carousel.html.twig" %}
     {% include "default/bottom.html.twig" %}
