@@ -13,7 +13,7 @@ class ingredients
     private $id;
 
     /**
-     * @var array
+     * @var string
      */
     private $ingredients;
 
@@ -31,7 +31,7 @@ class ingredients
     /**
      * Set ingredients
      *
-     * @param array $ingredients
+     * @param string $ingredients
      *
      * @return ingredients
      */
@@ -45,7 +45,7 @@ class ingredients
     /**
      * Get ingredients
      *
-     * @return array
+     * @return string
      */
     public function getIngredients()
     {

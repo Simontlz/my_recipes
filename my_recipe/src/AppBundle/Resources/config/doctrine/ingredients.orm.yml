@@ -10,5 +10,6 @@ AppBundle\Entity\ingredients:
                 strategy: AUTO
     fields:
         ingredients:
-            type: array
+            type: string
+            length: 255
     lifecycleCallbacks: {  }

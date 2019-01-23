@@ -18,10 +18,10 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $recipe = new recipes();
+        $recipes = new recipes();
         $ingredients = new ingredients();
 
-        $formRecipe = $this->createFormBuilder($recipe)
+        $formRecipe = $this->createFormBuilder($recipes)
             ->add('name', TextType::class, ['label' => 'Nom de la recette'])
             ->add('save', SubmitType::class, ['label' => 'Valider'])
             ->getForm();
@@ -31,9 +31,22 @@ class DefaultController extends Controller
             ->add('save', SubmitType::class, ['label' => 'Valider'])
             ->getForm();
 
+        $formRecipe->handleRequest($request);
+        $formIngredients->handleRequest($request);
+
+        if ($formRecipe->isSubmitted() && $formRecipe->isValid())
+        {
+            $recipe = $formRecipe->getData();
+
+        }
         return $this->render('default/index.html.twig', [
             'recipe' => $formRecipe->createView(),
             'ingredients' => $formIngredients->createView()
         ]);
+    }
+
+    public function splitIngredientsList(string $ingredientsList)
+    {
+        $array = explode(",", $ingredientsList, -1);
     }
 }
