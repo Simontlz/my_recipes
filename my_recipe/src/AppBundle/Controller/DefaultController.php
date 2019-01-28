@@ -2,11 +2,10 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Ingredient;
+use AppBundle\Entity\Recipe;
 use AppBundle\Entity\recipes;
 use AppBundle\Entity\ingredients;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -18,29 +17,37 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        $recipes = new recipes();
-        $ingredients = new ingredients();
-
-        $formRecipe = $this->createFormBuilder($recipes)
-            ->add('name', TextType::class, ['label' => 'Nom de la recette'])
+        $formRecipe = $this->createForm('AppBundle\Form\RecipeType');
+            /*->add('name', TextType::class, ['label' => 'Nom de la recette'])
             ->add('save', SubmitType::class, ['label' => 'Valider'])
-            ->getForm();
+            ->getForm();*/
 
-        $formIngredients = $this->createFormBuilder($ingredients)
-            ->add('ingredients', TextareaType::class, ['label' => 'Noms des ingrédients (Séparé par une virgule)'])
+        $formIngredients = $this->createForm('AppBundle\Form\IngredientType');
+
+       /* $formIngredients = $this->createFormBuilder($ingredients)
+            ->add('ingredients', TextType::class, ['label' => 'Noms des ingrédients (Séparé par une virgule)'])
             ->add('save', SubmitType::class, ['label' => 'Valider'])
-            ->getForm();
+            ->getForm();*/
 
         $formRecipe->handleRequest($request);
         $formIngredients->handleRequest($request);
 
         if ($formRecipe->isSubmitted() && $formRecipe->isValid())
         {
-            $recipe = $formRecipe->getData();
-            $this->splitIngredientsList($recipe->getName());
+            $recipeToSearch = $formRecipe->getData();
+            $recipe = $this->getDoctrine()
+                ->getRepository(Recipe::class)
+                ->findRecipeByName($recipeToSearch);
+            dump($recipe);die;
+        }
+
+        if ($formIngredients->isSubmitted() && $formIngredients->isValid())
+        {
+            $ingredient = $formIngredients->getData();
+            $this->splitIngredientsList($ingredient->getIngredients());
 
         }
-        return $this->render('default/index.html.twig', [
+        return $this->render('@App/default/index.html.twig', [
             'recipe' => $formRecipe->createView(),
             'ingredients' => $formIngredients->createView()
         ]);

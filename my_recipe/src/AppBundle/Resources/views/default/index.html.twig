@@ -1,4 +1,4 @@
-{% include "base.html.twig" %}
+{% include "@App/base.html.twig" %}
 
 
 {% block stylesheets %}
@@ -16,11 +16,11 @@
     </div>
     <div class="formWithIngredients">
         {{ form_start(ingredients) }}
-        {{ form_label(ingredients.ingredients) }} <br>
-        {{ form_widget(ingredients.ingredients) }}
+        {{ form_label(ingredients.name) }} <br>
+        {{ form_widget(ingredients.name) }}
         {{ form_rest(ingredients) }}
         {{ form_end(ingredients) }}
     </div>
-    {% include "Carousel/carousel.html.twig" %}
-    {% include "default/bottom.html.twig" %}
+    {% include "@App/Carousel/carousel.html.twig" %}
+    {% include "@App/default/bottom.html.twig" %}
 {% endblock %}
