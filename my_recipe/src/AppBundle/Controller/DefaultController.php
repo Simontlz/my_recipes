@@ -4,8 +4,6 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Ingredient;
 use AppBundle\Entity\Recipe;
-use AppBundle\Entity\recipes;
-use AppBundle\Entity\ingredients;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,7 +51,11 @@ class DefaultController extends Controller
         ]);
     }
 
-    public function splitIngredientsList(string $ingredientsList)
+    /**
+     * @param string $ingredientsList
+     * @return array
+     */
+    public function splitIngredientsList($ingredientsList)
     {
         $array = explode(",", $ingredientsList);
         dump($array);die;
