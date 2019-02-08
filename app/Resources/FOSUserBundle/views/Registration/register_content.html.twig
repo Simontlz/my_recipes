@@ -1,15 +1,27 @@
 {% trans_default_domain 'FOSUserBundle' %}
+<div class="row" style="margin-top: 10em">
+    <div class="col-4" ></div>
+    <div class="col-3" >
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
 
-<div style="margin: 0 auto;margin-top: 100px; width: 327px; height: 200px;">
-    <h2 style="text-align: center">Register</h2>
-<div style="margin: 0 auto; width: 327px; height: 175px;">
+    {{ form_label(form.username) }}
+    {{ form_widget(form.username) }}
+    {{ form_label(form.email) }}
+    {{ form_widget(form.email) }}
+    {{ form_label(form.plainPassword.first) }}
+    {{ form_widget(form.plainPassword.first) }}
+    {{ form_label(form.plainPassword.second) }}
+    {{ form_widget(form.plainPassword.second) }}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
-{{ form_widget(form) }}
-<div>
-    <input type="submit" value="{{ 'registration.submit'|trans }}" />
-</div>
+    {{ form_rest(form) }}
+
+    <div>
+        <input type="submit" value="{{ 'registration.submit'|trans }}" />
+    </div>
 {{ form_end(form) }}
 
+    </div>
+    <div class="col-5" style=""></div>
+
 </div>
-</div>
+
