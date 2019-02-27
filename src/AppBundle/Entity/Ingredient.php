@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Recipe
+ * Ingredient
  *
- * @ORM\Table(name="recipe")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeRepository")
+ * @ORM\Table(name="ingredient")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\IngredientRepository")
  */
-class Recipe
+class Ingredient
 {
     /**
      * @var int
@@ -29,9 +29,9 @@ class Recipe
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Recipe")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Ingredient")
      */
-    private $recipes;
+    private $ingredients;
 
     /**
      * Get id
@@ -48,7 +48,7 @@ class Recipe
      *
      * @param string $name
      *
-     * @return Recipe
+     * @return Ingredient
      */
     public function setName($name)
     {
@@ -68,41 +68,41 @@ class Recipe
     }
     public function __construct()
     {
-        $this->recipes = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add recipe
+     * Add ingredient
      *
-     * @param \AppBundle\Entity\Recipe $recipe
+     * @param \AppBundle\Entity\Ingredient $ingredient
      *
-     * @return Recipe
+     * @return Ingredient
      */
-    public function addRecipe(\AppBundle\Entity\Recipe $recipe)
+    public function addIngredient(\AppBundle\Entity\Ingredient $ingredient)
     {
-        $this->recipes[] = $recipe;
+        $this->ingredients[] = $ingredient;
 
         return $this;
     }
 
     /**
-     * Remove recipe
+     * Remove ingredient
      *
-     * @param \AppBundle\Entity\Recipe $recipe
+     * @param \AppBundle\Entity\Ingredient $ingredient
      */
-    public function removeRecipe(\AppBundle\Entity\Recipe $recipe)
+    public function removeIngredient(\AppBundle\Entity\Ingredient $ingredient)
     {
-        $this->recipes->removeElement($recipe);
+        $this->ingredients->removeElement($ingredient);
     }
 
     /**
-     * Get recipes
+     * Get ingredients
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getRecipes()
+    public function getIngredients()
     {
-        return $this->recipes;
+        return $this->ingredients;
     }
 }
 
