@@ -31,7 +31,7 @@ class Ingredient
     /**
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Recipe")
      */
-    private $ingredients;
+    private $recipes;
 
     /**
      * Get id

@@ -72,40 +72,40 @@ class Recipe
      */
     public function __construct()
     {
-        $this->ingredients = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->recipes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
-     * Add ingredient
+     * Add recipe
      *
-     * @param \AppBundle\Entity\Ingredient $ingredient
+     * @param \AppBundle\Entity\Recipe $recipe
      *
      * @return Recipe
      */
-    public function addIngredient(\AppBundle\Entity\Ingredient $ingredient)
+    public function addRecipe(\AppBundle\Entity\Recipe $recipe)
     {
-        $this->ingredients[] = $ingredient;
+        $this->recipes[] = $recipe;
 
         return $this;
     }
 
     /**
-     * Remove ingredient
+     * Remove recipe
      *
-     * @param \AppBundle\Entity\Ingredient $ingredient
+     * @param \AppBundle\Entity\Recipe $recipe
      */
-    public function removeIngredient(\AppBundle\Entity\Ingredient $ingredient)
+    public function removeRecipe(\AppBundle\Entity\Recipe $recipe)
     {
-        $this->ingredients->removeElement($ingredient);
+        $this->recipes->removeElement($recipe);
     }
 
     /**
-     * Get ingredients
+     * Get recipes
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getIngredients()
+    public function getRecipes()
     {
-        return $this->ingredients;
+        return $this->recipes;
     }
 }
