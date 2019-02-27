@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Ingredient
+ * Recipe
  *
- * @ORM\Table(name="ingredient")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\IngredientRepository")
+ * @ORM\Table(name="recipe")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\RecipeRepository")
  */
-class Ingredient
+class Recipe
 {
     /**
      * @var int
@@ -28,6 +28,10 @@ class Ingredient
      */
     private $name;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Recipe")
+     */
+    private $recipes;
 
     /**
      * Get id
@@ -44,7 +48,7 @@ class Ingredient
      *
      * @param string $name
      *
-     * @return Ingredient
+     * @return Recipe
      */
     public function setName($name)
     {
@@ -61,6 +65,44 @@ class Ingredient
     public function getName()
     {
         return $this->name;
+    }
+    public function __construct()
+    {
+        $this->recipes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add recipe
+     *
+     * @param \AppBundle\Entity\Recipe $recipe
+     *
+     * @return Recipe
+     */
+    public function addRecipe(\AppBundle\Entity\Recipe $recipe)
+    {
+        $this->recipes[] = $recipe;
+
+        return $this;
+    }
+
+    /**
+     * Remove recipe
+     *
+     * @param \AppBundle\Entity\Recipe $recipe
+     */
+    public function removeRecipe(\AppBundle\Entity\Recipe $recipe)
+    {
+        $this->recipes->removeElement($recipe);
+    }
+
+    /**
+     * Get recipes
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getRecipes()
+    {
+        return $this->recipes;
     }
 }
 

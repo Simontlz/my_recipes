@@ -1,0 +1,26 @@
+<div class="row" style="margin-top: 10em">
+    <div class="col-4" ></div>
+    <div class="col-3" >
+        {{ form_start(form, {'method': 'post', 'action': path('registration_user')}) }}
+
+        {{ form_label(form.username) }}
+        {{ form_widget(form.username) }}
+        {{ form_label(form.email) }}
+        {{ form_widget(form.email) }}
+        {{ form_label(form.plainPassword.first) }}
+        {{ form_widget(form.plainPassword.first) }}
+        {{ form_label(form.plainPassword.second) }}
+        {{ form_widget(form.plainPassword.second) }}
+
+        {{ form_rest(form) }}
+        <br>
+        <div>
+            <input type="submit" value="{{ 'Submit'|trans }}" />
+        </div>
+        {{ form_end(form) }}
+
+    </div>
+    <div class="col-5" style=""></div>
+
+</div>
+

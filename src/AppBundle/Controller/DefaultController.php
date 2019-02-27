@@ -10,11 +10,10 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
-    /**
-     * @Route("/", name="homepage")
-     */
     public function indexAction(Request $request)
     {
+
+        $usr = $this->getUser();
         $formRecipe = $this->createForm('AppBundle\Form\RecipeType');
             /*->add('name', TextType::class, ['label' => 'Nom de la recette'])
             ->add('save', SubmitType::class, ['label' => 'Valider'])
@@ -47,7 +46,8 @@ class DefaultController extends Controller
         }
         return $this->render('@App/default/index.html.twig', [
             'recipe' => $formRecipe->createView(),
-            'ingredients' => $formIngredients->createView()
+            'ingredients' => $formIngredients->createView(),
+            'user' => $usr
         ]);
     }
 
