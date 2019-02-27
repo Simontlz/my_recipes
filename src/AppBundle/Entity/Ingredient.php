@@ -29,7 +29,7 @@ class Ingredient
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Ingredient")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\Recipe")
      */
     private $ingredients;
 

@@ -6,6 +6,10 @@ registration_user:
     path: /register
     controller: AppBundle\Controller\RegistrationController::registerAction
 
+addIngredient:
+  path: /addIngredient
+  controller: AppBundle\Controller\IngredientController::addIngredientAction
+
 #FOSUser Bundle routes
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

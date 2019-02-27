@@ -1,0 +1,24 @@
+{% extends "@App/base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+
+        <div class="col-4"></div>
+        <div class="col-4">
+            {% for flashMessage in app.session.flashbag.get('error') %}
+                {{ flashMessage }}
+            {% endfor %}
+            <div id="form" style="margin-top: 5em" >
+            {{ form_start(form, {'method': 'post', 'action': path('addIngredient')}) }}
+
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+
+            {{ form_rest(form) }}
+            {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+{% endblock body %}
