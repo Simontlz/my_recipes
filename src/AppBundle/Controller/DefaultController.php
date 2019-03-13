@@ -34,7 +34,7 @@ class DefaultController extends Controller
             {
                 $recipe = $this->getDoctrine()
                     ->getRepository(Recipe::class)
-                    ->findRecipeWithIngredientsId($ingredientId->findIngredientIdByName("patates"));
+                    ->findRecipeWithIngredientsId($ingredientId->findIngredientIdByName($ingredient));
                 dump($recipe);die;
             }
         }

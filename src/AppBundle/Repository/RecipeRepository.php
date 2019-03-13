@@ -11,11 +11,11 @@ use Doctrine\ORM\EntityRepository;
  */
 class RecipeRepository extends EntityRepository
 {
-    public function findRecipeWithIngredientsId($recipeToSearch)
+    public function findRecipeWithIngredientsId($ingredientToSearch)
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT r FROM AppBundle:Recipe r WHERE r.name = :name')
-            ->setParameter('name', $recipeToSearch)
+            ->createQuery('SELECT r.recipe_id FROM AppBundle:Recipe r WHERE r.ingredient_id = :ingredient_id')
+            ->setParameter('ingredient_id', $ingredientToSearch)
             ->getResult();
     }
 }
