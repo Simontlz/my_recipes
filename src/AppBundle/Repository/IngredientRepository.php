@@ -10,4 +10,11 @@ namespace AppBundle\Repository;
  */
 class IngredientRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findIngredientIdByName($ingredient)
+    {
+        return $this->getEntityManager()
+            ->createQuery('SELECT i.id FROM AppBundle:Ingredient i WHERE i.name = :name')
+            ->setParameter('name', $ingredient)
+            ->getResult();
+    }
 }

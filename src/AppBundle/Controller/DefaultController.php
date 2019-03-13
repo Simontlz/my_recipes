@@ -10,32 +10,33 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends Controller
 {
+    public function splitIngredientsList($ingredientsList)
+    {
+        $array = explode(",", $ingredientsList);
+        return $array;
+    }
+
     public function indexAction(Request $request)
     {
-
         $usr = $this->getUser();
         $formRecipe = $this->createForm('AppBundle\Form\RecipeType');
-            /*->add('name', TextType::class, ['label' => 'Nom de la recette'])
-            ->add('save', SubmitType::class, ['label' => 'Valider'])
-            ->getForm();*/
-
         $formIngredients = $this->createForm('AppBundle\Form\IngredientType');
-
-       /* $formIngredients = $this->createFormBuilder($ingredients)
-            ->add('ingredients', TextType::class, ['label' => 'Noms des ingrédients (Séparé par une virgule)'])
-            ->add('save', SubmitType::class, ['label' => 'Valider'])
-            ->getForm();*/
+        $ingredientId = $this->getDoctrine()->getRepository(Ingredient::class);
 
         $formRecipe->handleRequest($request);
         $formIngredients->handleRequest($request);
 
         if ($formRecipe->isSubmitted() && $formRecipe->isValid())
         {
-            $recipeToSearch = $formRecipe->getData();
-            $recipe = $this->getDoctrine()
-                ->getRepository(Recipe::class)
-                ->findRecipeByName($recipeToSearch);
-            dump($recipe);die;
+            $recipeToSearch = $formRecipe['name']->getData();
+            $ingredients = $this->splitIngredientsList($recipeToSearch);
+            foreach ($ingredients as $ingredient)
+            {
+                $recipe = $this->getDoctrine()
+                    ->getRepository(Recipe::class)
+                    ->findRecipeWithIngredientsId($ingredientId->findIngredientIdByName("patates"));
+                dump($recipe);die;
+            }
         }
 
         if ($formIngredients->isSubmitted() && $formIngredients->isValid())
@@ -49,16 +50,5 @@ class DefaultController extends Controller
             'ingredients' => $formIngredients->createView(),
             'user' => $usr
         ]);
-    }
-
-    /**
-     * @param string $ingredientsList
-     * @return array
-     */
-    public function splitIngredientsList($ingredientsList)
-    {
-        $array = explode(",", $ingredientsList);
-        dump($array);die;
-        return $array;
     }
 }
