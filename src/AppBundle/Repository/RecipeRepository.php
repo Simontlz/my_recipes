@@ -14,7 +14,7 @@ class RecipeRepository extends EntityRepository
     public function findRecipeWithIngredientsId($ingredientToSearch)
     {
         return $this->getEntityManager()
-            ->createQuery('SELECT r.recipe_id FROM AppBundle:Recipe r WHERE r.ingredient_id = :ingredient_id')
+            ->createQuery('SELECT r.recipe_id FROM AppBundle:recipe_ingredient r WHERE r.ingredient_id = :ingredient_id')
             ->setParameter('ingredient_id', $ingredientToSearch)
             ->getResult();
     }
